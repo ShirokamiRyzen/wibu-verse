@@ -7,7 +7,15 @@ const Frame = ({ url }: { url: string }) => {
   }
 
   // Mengganti bagian url yang diinginkan
-  const modifiedUrl = url.replace('/stream/?id=', '/stream/hd/?id=');
+  let modifiedUrl = url;
+
+  if (url.includes('https://desustream.me/desudesu/?id=')) {
+    modifiedUrl = url.replace('https://desustream.me/desudesu/?id=', 'https://desustream.me/desudesuhd/?id=');
+  } else if (url.includes('https://desustream.me/stream/?id=')) {
+    modifiedUrl = url.replace('https://desustream.me/stream/?id=', 'https://desustream.me/stream/hd/?id=');
+  } else if (url.includes('https://desustream.me/beta/stream/?id=')) {
+    modifiedUrl = url.replace('https://desustream.me/beta/stream/?id=', 'https://desustream.me/beta/stream/hd/?id=');
+  }
 
   return <iframe src={modifiedUrl} height={200} allowFullScreen></iframe>;
 };

@@ -1,5 +1,6 @@
 'use client';
 import Frame from '@/components/Frame';
+import Frame2 from '@/components/Frame2';
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
@@ -45,9 +46,16 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
         </div>
       ) : null}
       <h1>{episode?.title}</h1>
+      <br />
       <div className="flex justify-center">
         <Frame url={episode?.link!} />
       </div>
+      <span className='flex justify-center'>720p</span>
+      <br />
+      <div className="flex justify-center">
+        <Frame2 url={episode?.link!} />
+      </div>
+      <span className='flex justify-center'>480p</span>
     </div>
   );
 };
