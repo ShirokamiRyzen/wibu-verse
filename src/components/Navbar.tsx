@@ -16,8 +16,11 @@ const Navbar = () => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSubmit(e as React.FormEvent<HTMLFormElement>);
+    if (e.key === 'Enter' && searchRef.current?.value) {
+      const form = e.currentTarget.closest('form');
+      if (form) {
+        form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      }
     }
   };
 
