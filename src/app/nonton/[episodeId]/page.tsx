@@ -15,7 +15,7 @@ interface Episode {
 const Page = ({ params }: { params: { episodeId: string } }) => {
   const [episode, setEpisode] = useState<Episode | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedQuality, setSelectedQuality] = useState<string>('720p');
+  const [selectedQuality, setSelectedQuality] = useState<string>('480p');
   const { setLists } = useContext(ListEpisodeContext);
 
   const getEpisode = async () => {
@@ -56,7 +56,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           </div>
           <br />
           <div className="flex justify-center">
-            {selectedQuality === '720p' ? (
+            {selectedQuality === '480p' ? (
               <Frame url={episode.link} />
             ) : (
               <Frame2 url={episode.link} />
@@ -69,16 +69,16 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           <div className="flex justify-center mt-3 rounded">
             <div className="border border-black p-2">
               <button
-                onClick={() => setSelectedQuality('720p')}
-                className={`mr-3 ${selectedQuality === '720p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
-              >
-                720p
-              </button>
-              <button
                 onClick={() => setSelectedQuality('480p')}
-                className={`${selectedQuality === '480p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
+                className={`mr-3 ${selectedQuality === '480p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
               >
                 480p
+              </button>
+              <button
+                onClick={() => setSelectedQuality('720p')}
+                className={`${selectedQuality === '720p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
+              >
+                720p
               </button>
             </div>
           </div>
