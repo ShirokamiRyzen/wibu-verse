@@ -19,7 +19,7 @@ const Frame2 = ({ url }: { url: string }) => {
     modifiedUrl = url.replace('/beta/stream2/?id=', '/beta/stream2/hd/?id=');
   }
 
-  return <iframe src={modifiedUrl} height={200} allowFullScreen></iframe>;
+  return <iframe src={modifiedUrl} width={480} height={240} allowFullScreen></iframe>;
 };
 
 export default Frame2;
