@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 container sticky top-0 z-50">
+    <div className="navbar bg-base-100 container sticky top-0 z-50 bg-opacity-50 backdrop-blur-md">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost normal-case text-xl">
           Ryzendesu.vip
