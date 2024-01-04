@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Episode } from '@/types/episode';
 import loadingGif from '@/assets/loading.gif';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 
 export default function Home() {
   const [episode, setEpisode] = useState<Episode[]>([]);
@@ -15,9 +16,7 @@ export default function Home() {
     try {
       const { data } = await axios.get('/api/new');
       setEpisode(data.data);
-      setLoading(false);
     } catch (error: any) {
-      setLoading(false);
       console.log(error.message);
     } finally {
       setLoading(false);
@@ -26,7 +25,71 @@ export default function Home() {
 
   useEffect(() => {
     getNewEpisodes();
+
+    const popupShownBefore = Cookies.get('popupShown');
+
+    if (!popupShownBefore) {
+      showPopup();
+      Cookies.set('popupShown', 'true', { expires: 1 });
+    }
+
+    const cleanupOnUnload = () => {
+      Cookies.remove('popupShown');
+    };
+
+    window.addEventListener('unload', cleanupOnUnload);
+
+    return () => {
+      window.removeEventListener('unload', cleanupOnUnload);
+    };
   }, []);
+
+  const showPopup = () => {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
+
+    // Create popup
+    const popup = document.createElement('div');
+    popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
+    popup.innerHTML =  `
+    <center>
+    <img src="https://telegra.ph/file/42d1118423795a857e61c.png" alt="gepeng" width="128px">
+    <p>Jalan jalan kepantai, karena macet lewat jalan toll</p>
+    <p>Eh eh, Chamber kont</p>
+    <button class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md focus:outline-none">Tutup</button>
+    <center>
+    `;
+
+    // Append overlay and popup to body
+    document.body.appendChild(overlay);
+    document.body.appendChild(popup);
+
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+
+    const closeButton = popup.querySelector('button');
+
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        // Enable scrolling
+        document.body.style.overflow = 'visible';
+
+        // Remove both overlay and popup
+        document.body.removeChild(overlay);
+        popup.classList.remove('opacity-100');
+        setTimeout(() => {
+          document.body.removeChild(popup);
+        }, 300);
+      });
+    }
+
+    setTimeout(() => {
+      // Make popup and overlay visible
+      overlay.classList.add('opacity-100');
+      popup.classList.add('opacity-100');
+    }, 100);
+  };
 
   return (
     <div className="container pt-4 pb-10">
