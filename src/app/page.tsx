@@ -52,14 +52,14 @@ export default function Home() {
     // Create popup
     const popup = document.createElement('div');
     popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
-    popup.innerHTML =  `
-    <center>
+    popup.innerHTML = `
+  <center>
     <img src="https://telegra.ph/file/42d1118423795a857e61c.png" alt="gepeng" width="128px">
-    <p>Jalan jalan kepantai, karena macet lewat jalan toll</p>
-    <p>Eh eh, Chamber kont</p>
-    <button class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md focus:outline-none">Tutup</button>
-    <center>
-    `;
+    <p class="text-sm md:text-lg">Jangan ajari aku arti sabar,</p>
+    <p class="text-sm md:text-lg">Gw pernah ngarep Gaji padahal peserta PKL</p>
+    <button class="bg-blue-500 text-white px-2 py-1 mt-2 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none">Tutup</button>
+  <center>
+`;
 
     // Append overlay and popup to body
     document.body.appendChild(overlay);
