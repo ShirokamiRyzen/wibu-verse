@@ -49,15 +49,22 @@ export default function Home() {
     const overlay = document.createElement('div');
     overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
 
+    //Quotes popup, ubah lewat .env
+    const kata1 = process.env.NEXT_PUBLIC_KATA_1;
+    const kata2 = process.env.NEXT_PUBLIC_KATA_2;
+    const tombol = process.env.NEXT_PUBLIC_TOMBOL;
+
     // Create popup
     const popup = document.createElement('div');
-    popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
+    popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
     popup.innerHTML = `
   <center>
     <img src="https://telegra.ph/file/42d1118423795a857e61c.png" alt="gepeng" width="128px">
-    <p class="text-sm md:text-lg">Jangan ajari aku arti sabar,</p>
-    <p class="text-sm md:text-lg">Gw pernah ngarep Gaji padahal peserta PKL</p>
-    <button class="bg-blue-500 text-white px-2 py-1 mt-2 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none">Tutup</button>
+
+    <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
+    <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
+
+    <button class="bg-blue-500 text-white px-2 py-1 mt-2 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none">${tombol}</button>
   <center>
 `;
 
