@@ -12,6 +12,19 @@ yarn dev
 pnpm dev
 ```
 
+## Setting popup message
+
+Set env on vercel setting
+
+```bash
+//use example on this repository
+//change value
+
+NEXT_PUBLIC_KATA_1=Lorem ipsum dolor sit amet
+NEXT_PUBLIC_KATA_2=consectetur adipisicing elit.
+NEXT_PUBLIC_TOMBOL=Tutup
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
