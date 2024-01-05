@@ -1,4 +1,5 @@
 'use client';
+import Script from 'next/script';
 import axios from 'axios';
 import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
@@ -6,6 +7,7 @@ import { Episode } from '@/types/episode';
 import loadingGif from '@/assets/loading.gif';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
   const [episode, setEpisode] = useState<Episode[]>([]);
@@ -100,6 +102,20 @@ export default function Home() {
 
   return (
     <div className="container pt-4 pb-10">
+      <Analytics />
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-TT2D2MBVGW`}
+      />
+      <Script strategy="lazyOnload" id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-TT2D2MBVGW');
+        `}
+      </Script>
+
       <h1 className="bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4">Rilisan Terbaru</h1>
       {loading ? (
         <div className="flex justify-center">
