@@ -12,7 +12,7 @@ interface CardInfoProps {
 const CardInfo = ({ id, title, thumbnail, genres }: CardInfoProps) => {
   return (
     <Link href={`/${id}`} passHref>
-      <div className="card p-0 card-side bg-gray-800 shadow-xl min-h-fit">
+      <div className="card p-0 card-side bg-main-800 shadow min-h-fit">
         <figure className="w-36">
           <Image src={thumbnail} width={160} height={680} alt={title} />
         </figure>
