@@ -50,9 +50,9 @@ export default function Home() {
     overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
 
     //Quotes popup, ubah lewat .env
-    const kata1 = process.env.NEXT_PUBLIC_KATA_1;
-    const kata2 = process.env.NEXT_PUBLIC_KATA_2;
-    const tombol = process.env.NEXT_PUBLIC_TOMBOL;
+    const kata1 = 'Pernah suka sama temen kelas';
+    const kata2 = 'Tapi dianya friendly :(';
+    const tombol = 'Sad :(';
 
     // Create popup
     const popup = document.createElement('div');

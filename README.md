@@ -14,15 +14,14 @@ pnpm dev
 
 ## Setting popup message
 
-Set env on vercel setting
+Set on src/app/page.tsx
 
 ```bash
-//use example on this repository
 //change value
 
-NEXT_PUBLIC_KATA_1=Lorem ipsum dolor sit amet
-NEXT_PUBLIC_KATA_2=consectetur adipisicing elit.
-NEXT_PUBLIC_TOMBOL=Tutup
+const kata1 = 'value';
+const kata2 = 'value';
+const tombol = 'value';
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
