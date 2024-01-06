@@ -52,9 +52,9 @@ export default function Home() {
     overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
 
     //Quotes popup, ubah lewat .env
-    const kata1 = 'Pernah suka sama temen kelas';
-    const kata2 = 'Tapi dianya friendly :(';
-    const tombol = 'Sad :(';
+    const kata1 = 'Lorem ipsum';
+    const kata2 = 'Undefined';
+    const tombol = 'Tutup';
 
     // Create popup
     const popup = document.createElement('div');
