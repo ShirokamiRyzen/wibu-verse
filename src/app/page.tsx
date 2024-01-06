@@ -36,7 +36,10 @@ export default function Home() {
     }
 
     const cleanupOnUnload = () => {
-      Cookies.remove('popupShown');
+      if (Cookies.get('popupShown')) {
+        // Hapus cookies hanya jika masih ada
+        Cookies.remove('popupShown');
+      }
     };
 
     window.addEventListener('unload', cleanupOnUnload);
@@ -46,22 +49,24 @@ export default function Home() {
     };
   }, []);
 
+
   const showPopup = () => {
     // Create overlay
     const overlay = document.createElement('div');
     overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
 
     //Quotes popup, ubah lewat .env
-    const kata1 = 'Lorem ipsum';
-    const kata2 = 'Undefined';
-    const tombol = 'Tutup';
+    const kata1 = process.env.NEXT_PUBLIC_KATA_1;
+    const kata2 = process.env.NEXT_PUBLIC_KATA_2;
+    const tombol = process.env.NEXT_PUBLIC_TOMBOL;
+    const gambar = process.env.NEXT_PUBLIC_GAMBAR;
 
     // Create popup
     const popup = document.createElement('div');
     popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
     popup.innerHTML = `
   <center>
-    <img src="https://telegra.ph/file/42d1118423795a857e61c.png" alt="gepeng" width="128px">
+    <img src="${gambar}" alt="gepeng" width="128px">
 
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
