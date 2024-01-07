@@ -39,50 +39,60 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
 
   const handlePrevEpisode = () => {
     const currentUrl = window.location.href;
-
-    // Mengekstrak nomor episode dari URL
     const episodeNumberMatch = currentUrl.match(/episode-(\d+)/);
+
     if (episodeNumberMatch) {
-      // Mendapatkan nomor episode saat ini
       const currentEpisodeNumber = parseInt(episodeNumberMatch[1]);
 
-      // Menghitung nomor episode sebelumnya
-      const prevEpisodeNumber = currentEpisodeNumber - 1;
-
-      // Membuat URL baru dengan nomor episode sebelumnya
-      const newUrl = currentUrl.replace(
-        episodeNumberMatch[0],
-        `episode-${prevEpisodeNumber}`
-      );
-
-      window.location.href = newUrl;
-    } else {
+      if (currentEpisodeNumber > 1) {
+        const prevEpisodeNumber = currentEpisodeNumber - 1;
+        const newUrl = currentUrl.replace(
+          episodeNumberMatch[0],
+          `episode-${prevEpisodeNumber}`
+        );
+        window.location.href = newUrl;
+      }
     }
   };
 
+
+  const getLatestEpisodeNumber = () => {
+    const episodeLinks = document.querySelectorAll('ul.flex li a');
+    let latestEpisodeNumber = 0;
+
+    episodeLinks.forEach((link) => {
+      const anchorLink = link as HTMLAnchorElement; // Cast to HTMLAnchorElement
+      const match = anchorLink.href.match(/episode-(\d+)/);
+
+      if (match) {
+        const episodeNumber = parseInt(match[1]);
+        latestEpisodeNumber = Math.max(latestEpisodeNumber, episodeNumber);
+      }
+    });
+
+    return latestEpisodeNumber;
+  };
 
   const handleNextEpisode = () => {
     const currentUrl = window.location.href;
-
-    // Mengekstrak nomor episode dari URL
     const episodeNumberMatch = currentUrl.match(/episode-(\d+)/);
-    if (episodeNumberMatch) {
-      // Mendapatkan nomor episode saat ini
-      const currentEpisodeNumber = parseInt(episodeNumberMatch[1]);
 
-      // Menghitung nomor episode sebelumnya
+    if (episodeNumberMatch) {
+      const currentEpisodeNumber = parseInt(episodeNumberMatch[1]);
       const nextEpisodeNumber = currentEpisodeNumber + 1;
 
-      // Membuat URL baru dengan nomor episode sebelumnya
-      const newUrl = currentUrl.replace(
-        episodeNumberMatch[0],
-        `episode-${nextEpisodeNumber}`
-      );
+      const latestEpisodeNumber = getLatestEpisodeNumber();
 
-      window.location.href = newUrl;
+      if (nextEpisodeNumber <= latestEpisodeNumber) {
+        const newUrl = currentUrl.replace(episodeNumberMatch[0], `episode-${nextEpisodeNumber}`);
+        window.location.href = newUrl;
+      } else {
+        return 0;
+      }
     } else {
     }
   };
+
 
   return (
     <div className="py-10">
