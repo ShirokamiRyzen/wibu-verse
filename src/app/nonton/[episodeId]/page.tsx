@@ -16,7 +16,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
   const [episode, setEpisode] = useState<Episode | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedQuality, setSelectedQuality] = useState<string>('480p');
-  const [showMessage, setShowMessage] = useState<boolean>(true); // State untuk menunjukkan atau menyembunyikan pesan
+  const [showMessage, setShowMessage] = useState<boolean>(true);
   const { setLists } = useContext(ListEpisodeContext);
 
   const getEpisode = async () => {
