@@ -55,11 +55,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
         `episode-${prevEpisodeNumber}`
       );
 
-      // Navigasi ke URL baru
       window.location.href = newUrl;
     } else {
-      // Handle jika format episode tidak ditemukan pada URL
-      console.error("Format episode tidak ditemukan pada URL");
     }
   };
 
@@ -82,11 +79,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
         `episode-${nextEpisodeNumber}`
       );
 
-      // Navigasi ke URL baru
       window.location.href = newUrl;
     } else {
-      // Handle jika format episode tidak ditemukan pada URL
-      console.error("Format episode tidak ditemukan pada URL");
     }
   };
 
