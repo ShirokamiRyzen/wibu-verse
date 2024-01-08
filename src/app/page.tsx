@@ -66,7 +66,7 @@ export default function Home() {
     popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
     popup.innerHTML = `
   <center>
-    <img src="${gambar}" alt="gepeng" width="128px">
+    <img src="${gambar}" alt="gepeng" width="240px">
 
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
