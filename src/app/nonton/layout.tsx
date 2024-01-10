@@ -13,7 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <ul className="flex flex-wrap  gap-2">
         {lists.map((item, index) => (
           <li key={index} className="bg-zinc-900 w-max text-white p-2">
-            <Link href={`/nonton/${item.id}`}>Episode {lists.length - index}</Link>
+            <Link href={`/nonton/${item.id}`}>
+              Episode {lists.length - index} {item.title.toLowerCase().includes('ova') ? '(OVA)' : ''}
+            </Link>
           </li>
         ))}
       </ul>

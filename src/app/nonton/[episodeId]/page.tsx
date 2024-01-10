@@ -37,6 +37,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
     if (lists) setLists(JSON.parse(lists));
   }, []);
 
+  const isOvaPage = window.location.pathname.includes('ova');
+
   const handlePrevEpisode = () => {
     const currentUrl = window.location.href;
     const episodeNumberMatch = currentUrl.match(/episode-(\d+)/);
@@ -126,19 +128,22 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           </div>
           <span className='flex justify-center'>Kualitas saat ini: {selectedQuality}</span>
           <div className="flex justify-center mt-3">
-            <button
-              onClick={handlePrevEpisode}
-              className="bg-gray-300 text-black py-2 px-4 rounded mr-3 hover:bg-gray-400 transition"
-            >
-              Prev Episode
-            </button>
-            <button
-              onClick={handleNextEpisode}
-              className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400 transition"
-            >
-              Next Episode
-            </button>
-            <br />
+            {isOvaPage ? null : (
+              <>
+                <button
+                  onClick={handlePrevEpisode}
+                  className="bg-gray-300 text-black py-2 px-4 rounded mr-3 hover:bg-gray-400 transition"
+                >
+                  Prev Episode
+                </button>
+                <button
+                  onClick={handleNextEpisode}
+                  className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400 transition"
+                >
+                  Next Episode
+                </button>
+              </>
+            )}
           </div>
           {/* Add buttons for quality selection */}
           <div className="flex justify-center mt-3 rounded">
@@ -146,8 +151,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
               <button
                 onClick={() => setSelectedQuality('480p')}
                 className={`mr-3 ${selectedQuality === '480p'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-blue-500 text-black'
+                  ? 'bg-green-500 text-white'
+                  : 'bg-blue-500 text-black'
                   } py-2 px-4 rounded hover:bg-green-600 transition`}
               >
                 SD 480p
@@ -155,8 +160,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
               <button
                 onClick={() => setSelectedQuality('720p')}
                 className={`${selectedQuality === '720p'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-blue-500 text-black'
+                  ? 'bg-green-500 text-white'
+                  : 'bg-blue-500 text-black'
                   } py-2 px-4 rounded hover:bg-green-600 transition`}
               >
                 HD 720p
