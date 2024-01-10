@@ -37,7 +37,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
     if (lists) setLists(JSON.parse(lists));
   }, []);
 
-  const isOvaPage = window.location.pathname.includes('ova');
+  const isOvaPage = typeof window !== 'undefined' && window.location.pathname.includes('ova');
 
   const handlePrevEpisode = () => {
     const currentUrl = window.location.href;

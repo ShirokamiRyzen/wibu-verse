@@ -4,31 +4,27 @@ import React, { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
-  // Create a ref for the search input
   const searchRef = useRef<HTMLInputElement>(null);
-  // Get the router object
   const router = useRouter();
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Check if the search input has a value
     if (searchRef.current?.value) {
-      // Redirect to the search page with the search query
       router.push(`/anime/?search=${searchRef.current.value}`);
+      if (searchRef.current) {
+        searchRef.current.value = '';
+        searchRef.current.blur();
+      }
     }
   };
 
-  // Handle click events on the search div
   const handleClick = () => {
-    // Set focus to the search input when the div is clicked
     if (searchRef.current) {
       searchRef.current.focus();
     }
   };
 
-  // Render the Navbar component
   return (
     <div className="navbar bg-base-100 container sticky top-0 z-50 bg-opacity-50 backdrop-blur-md">
       <div className="flex-1">
