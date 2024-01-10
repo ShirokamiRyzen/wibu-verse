@@ -109,9 +109,11 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           <h1>{episode.title}</h1>
           <br />
           {showMessage && (
-            <div className="alert alert-danger bg-green-500 text-black mx-auto max-w-md" role="alert">
+            <div className="alert alert-danger bg-green-500 text-black mx-auto max-w-md" role="alert" style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span className="mx-auto">720p tidak selalu ada karena limitasi akses ke server sumber</span>
-              <button onClick={() => setShowMessage(false)} className="float-right text-white">×</button>
+              <button onClick={() => setShowMessage(false)} className="close-button">
+                ×
+              </button>
             </div>
           )}
           <br />
@@ -122,29 +124,40 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
               <Frame2 url={episode.link} />
             )}
           </div>
+          <span className='flex justify-center'>Kualitas saat ini: {selectedQuality}</span>
           <div className="flex justify-center mt-3">
-            <button onClick={handlePrevEpisode} className="bg-gray-300 text-black py-2 px-4 rounded mr-3">
+            <button
+              onClick={handlePrevEpisode}
+              className="bg-gray-300 text-black py-2 px-4 rounded mr-3 hover:bg-gray-400 transition"
+            >
               Prev Episode
             </button>
-            <button onClick={handleNextEpisode} className="bg-gray-300 text-black py-2 px-4 rounded">
+            <button
+              onClick={handleNextEpisode}
+              className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400 transition"
+            >
               Next Episode
             </button>
             <br />
           </div>
-          <span className='flex justify-center'>Kualitas saat ini: {selectedQuality}</span>
-          <br />
           {/* Add buttons for quality selection */}
           <div className="flex justify-center mt-3 rounded">
             <div className="border border-black p-2">
               <button
                 onClick={() => setSelectedQuality('480p')}
-                className={`mr-3 ${selectedQuality === '480p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
+                className={`mr-3 ${selectedQuality === '480p'
+                    ? 'bg-green-500 text-white'
+                    : 'bg-blue-500 text-black'
+                  } py-2 px-4 rounded hover:bg-green-600 transition`}
               >
                 SD 480p
               </button>
               <button
                 onClick={() => setSelectedQuality('720p')}
-                className={`${selectedQuality === '720p' ? 'bg-green-500 text-white' : 'bg-blue-500 text-black'} py-2 px-4 rounded`}
+                className={`${selectedQuality === '720p'
+                    ? 'bg-green-500 text-white'
+                    : 'bg-blue-500 text-black'
+                  } py-2 px-4 rounded hover:bg-green-600 transition`}
               >
                 HD 720p
               </button>

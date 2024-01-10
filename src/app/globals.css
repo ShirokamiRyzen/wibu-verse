@@ -3,15 +3,21 @@
 @tailwind utilities;
 
 body {
-  scrollbar-width: thin; /* untuk browser Firefox */
-  scrollbar-color: transparent transparent; /* untuk browser Firefox */
-  overflow-y: scroll; /* untuk browser lainnya */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-  width: 8px; /* untuk browser Chrome, Safari, dan Opera */
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: transparent; /* untuk browser Chrome, Safari, dan Opera */
+  background-color: transparent;
+}
+
+.ryzen-popup-close-button {
+  align-self: flex-start;
+  margin-left: auto;
+  padding: 5px 10px;
 }
