@@ -109,7 +109,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           <h1>{episode.title}</h1>
           <br />
           {showMessage && (
-            <div className="alert alert-danger bg-green-500 text-black mx-auto max-w-md" role="alert" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className="alert alert-danger bg-green-500 text-black mx-auto max-w-full" role="alert" style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span className="mx-auto">720p tidak selalu ada karena limitasi akses ke server sumber</span>
               <button onClick={() => setShowMessage(false)} className="close-button">
                 ×
