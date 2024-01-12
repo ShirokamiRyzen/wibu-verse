@@ -63,7 +63,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
     let latestEpisodeNumber = 0;
 
     episodeLinks.forEach((link) => {
-      const anchorLink = link as HTMLAnchorElement; // Cast to HTMLAnchorElement
+      const anchorLink = link as HTMLAnchorElement;
       const match = anchorLink.href.match(/episode-(\d+)/);
 
       if (match) {
