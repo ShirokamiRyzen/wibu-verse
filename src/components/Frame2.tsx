@@ -17,6 +17,8 @@ const Frame2 = ({ url }: { url: string }) => {
     modifiedUrl = url.replace('/beta/stream/?id=', '/beta/stream/hd/?id=');
   } else if (url.includes('/beta/stream2/?id=')) {
     modifiedUrl = url.replace('/beta/stream2/?id=', '/beta/stream2/hd/?id=');
+  } else if (url.includes('/desudesu2/?id=')) {
+    modifiedUrl = url.replace('/desudesu2/?id=', '/desudesuhd/?id=');
   }
 
   return <iframe src={modifiedUrl} width={480} height={240} allowFullScreen></iframe>;
