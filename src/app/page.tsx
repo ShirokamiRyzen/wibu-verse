@@ -131,7 +131,7 @@ export default function Home() {
       {loading ? (
         <div className="flex justify-center">
           <div className=" rounded-full h-32 w-32">
-            <Image src={loadingGif} width={150} height={150} alt="loading" className="h-full w-full rounded-full" />
+            <Image src={loadingGif} width={150} height={150} alt="loading" className="h-full w-full rounded-full" loading='lazy'/>
           </div>
         </div>
       ) : null}
