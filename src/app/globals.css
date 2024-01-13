@@ -21,3 +21,31 @@ body {
   margin-left: auto;
   padding: 5px 10px;
 }
+
+.clickAnimation {
+  transition: transform 0.2s;
+}
+
+@media (min-width: 769px) {
+  .clickAnimation:hover {
+    transform: scale(1.05);
+  }
+}
+
+.clickAnimation:active {
+  transform: scale(0.95);
+}
+
+.clickAnimation-list {
+  transition: transform 0.2s;
+}
+
+@media (min-width: 769px) {
+  .clickAnimation-list:hover {
+    transform: scale(1.02);
+  }
+}
+
+.clickAnimation-list:active {
+  transform: scale(0.95);
+}

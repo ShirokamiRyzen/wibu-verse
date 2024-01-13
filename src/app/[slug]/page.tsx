@@ -51,7 +51,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       {detailAnime ? <h3 className=" text-base mt-4">List Episode: </h3> : null}
       <ul className="flex flex-col gap-2">
         {detailAnime?.links.map((item, index) => (
-          <li key={index}>
+          <li  className="clickAnimation-list" key={index}>
             <Link href={`/nonton/${item.id}`}>
               <div className="bg-zinc-800 text-white text-sm p-2 overflow-hidden rounded-md">
                 <p className="truncate hover:whitespace-nowrap">{item.title}</p>

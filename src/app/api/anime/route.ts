@@ -11,7 +11,7 @@ export const GET = async (req: Request) => {
   }
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, status } = await useFetch(`https://otakudesu.cam/?s=${search}&post_type=anime`);
+    const { data, status } = await useFetch(`https://otakudesu.media/?s=${search}&post_type=anime`);
 
     if (status !== 200) throw new Error(`Error ${status}`);
 

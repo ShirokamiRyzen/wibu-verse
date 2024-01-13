@@ -6,7 +6,7 @@ export const GET = async (req: NextRequest) => {
   const timestamp = new Date().getTime();
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, status } = await useFetch(`https://otakudesu.cam/ongoing-anime/?=${timestamp}`);
+    const { data, status } = await useFetch(`https://otakudesu.media/ongoing-anime/?=${timestamp}`);
 
     if (status !== 200) throw new Error(`Error ${status}`);
 

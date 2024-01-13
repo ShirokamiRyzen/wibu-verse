@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <h3>List Episode</h3>
       <ul className="flex flex-wrap  gap-2">
         {lists.map((item, index) => (
-          <li key={index} className="bg-zinc-900 w-max text-white p-2">
+          <li key={index} className="bg-zinc-900 w-max text-white p-2 clickAnimation">
             <Link href={`/nonton/${item.id}`}>
               Episode {lists.length - index} {item.title.toLowerCase().includes('ova') ? '(OVA)' : ''}
             </Link>
