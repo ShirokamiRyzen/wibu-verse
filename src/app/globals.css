@@ -49,3 +49,60 @@ body {
 .clickAnimation-list:active {
   transform: scale(0.95);
 }
+
+.notification {
+  position: fixed;
+  top: 4rem;
+  right: 4rem;
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 9999;
+  opacity: 0;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.closeButton {
+  align-self: flex-end;
+  color: gray;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.logo {
+  margin-right: 0.5rem;
+}
+
+.downloadButton {
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}

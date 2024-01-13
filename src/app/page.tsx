@@ -35,6 +35,12 @@ export default function Home() {
       Cookies.set('popupShown', 'true', { expires: 1 });
     }
 
+    const userAgent = window.navigator.userAgent;
+
+    if (userAgent.includes("Desktop")) {
+      alert("Lorem Ipsum");
+    }
+
     const cleanupOnUnload = () => {
       if (Cookies.get('popupShown')) {
         // Hapus cookies hanya jika masih ada
