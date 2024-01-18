@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Loading from '@/components/Loading';
 import Link from 'next/link';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
@@ -35,11 +36,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   return (
     <div className="container py-10">
       {loading ? (
-        <div className="flex justify-center">
-          <div className=" rounded-full h-32 w-32">
-            <Image src={loadingGif} alt="loading" width={150} height={150} className="h-full w-full rounded-full" loading='lazy'/>
-          </div>
-        </div>
+        <Loading />
       ) : null}
       <div className="flex justify-center">{detailAnime ? <Image className="rounded-md" src={detailAnime?.thumbnail!} width={200} height={250} alt={detailAnime?.title!} /> : null}</div>
       <h1 className="text-center my-2 text-lg">{detailAnime?.title}</h1>

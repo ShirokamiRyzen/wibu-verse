@@ -4,7 +4,7 @@ import Frame2 from '@/components/Frame2';
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
-import Image from 'next/image';
+import Loading from '@/components/Loading';
 import loadingGif from '@/assets/loading.gif';
 
 interface Episode {
@@ -99,11 +99,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
   return (
     <div className="py-10">
       {loading ? (
-        <div className="flex justify-center">
-          <div className="rounded-full h-32 w-32">
-            <Image src={loadingGif} alt="loading" width={150} height={150} className="h-full w-full rounded-full" loading='lazy'/>
-          </div>
-        </div>
+        <Loading />
       ) : null}
 
       {episode && (
