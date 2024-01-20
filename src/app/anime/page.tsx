@@ -4,7 +4,6 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import CardInfo from '@/components/CardInfo';
 import Loading from '@/components/Loading';
-import loadingGif from '@/assets/loading.gif';
 
 interface Anime {
   id: string;

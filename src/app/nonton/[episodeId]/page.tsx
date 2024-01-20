@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
 import Loading from '@/components/Loading';
-import loadingGif from '@/assets/loading.gif';
 
 interface Episode {
   title: string;

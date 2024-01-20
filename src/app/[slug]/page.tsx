@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { DetailAnime } from '@/types/detailAnime';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
-import loadingGif from '@/assets/loading.gif';
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const [detailAnime, setDetailAnime] = useState<DetailAnime>();
