@@ -3,7 +3,7 @@ import React from 'react';
 
 const Page: React.FC = () => {
 
-    const apk = 'https://ryzenshare.vercel.app/Ryzen1/ryzendesu.com/Wibu-Verse/Ryzendesu.V2.2.stable.apk';
+    const apk = 'https://ryzenshare.vercel.app/Ryzen1/ryzendesu.com/Wibu-Verse/Ryzendesu.V2.3.stable.apk';
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -13,7 +13,7 @@ const Page: React.FC = () => {
                     Download versi terbaru disini.
                 </p>
                 <a href={apk} className="bg-blue-500 text-white px-4 py-2 rounded">
-                    Download (V2.2)
+                    Download (V2.3)
                 </a>
             </div>
         </div>
