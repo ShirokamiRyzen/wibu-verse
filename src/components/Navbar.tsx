@@ -30,10 +30,12 @@ const Navbar = () => {
     <div className="navbar bg-base-100 container sticky top-0 z-50 bg-opacity-50 backdrop-blur-md">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost normal-case text-xl">
-          Ryzendesu.vip
+          RYZENDESU
         </Link>
       </div>
       <div className="flex-none gap-2">
+        <Link href="/bookmark" className="btn btn-ghost normal-case text-xl">🗀
+        </Link>
         <form className="flex gap-2" onSubmit={handleSubmit}>
           <div className="form-control" onClick={handleClick}>
             <input
