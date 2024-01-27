@@ -15,21 +15,18 @@ interface Anime {
 const Page = () => {
   const [lists, setLists] = useState<Anime[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [search, setSearch] = useState<string>('none'); // State to hold search value
-
-  // Use useEffect to handle search parameter on component mount
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const searchValue = searchParams.get('search') ?? 'none';
-    setSearch(searchValue);
-  }, []);
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') ?? 'none';
 
   const getAnimeLists = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(`/api/anime/?search=${search}`);
       setLists(data.data);
+      setLoading(false);
     } catch (error: any) {
+      setLoading(false);
+      console.log(error.message);
     } finally {
       setLoading(false);
     }
@@ -43,18 +40,11 @@ const Page = () => {
     <div className="container py-6 flex flex-col gap-4">
       {loading ? (
         <Loading />
-      ) : (
-        <h1 className="">Hasil pencarian: {search}</h1>
-      )}
+      ) : <h1 className="">Hasil pencarian: {search}</h1>
+      }
 
       {lists.map((item) => (
-        <CardInfo
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          thumbnail={item.thumbnail}
-          genres={item.genres}
-        />
+        <CardInfo key={item.id} id={item.id} title={item.title} thumbnail={item.thumbnail} genres={item.genres} />
       ))}
     </div>
   );

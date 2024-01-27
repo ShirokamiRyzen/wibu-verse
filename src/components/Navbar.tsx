@@ -34,7 +34,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <Link href="/bookmark" className="btn btn-ghost normal-case text-xl">🗀
+        <Link href="/bookmark" className="btn btn-ghost normal-case text-xl">📁
         </Link>
         <form className="flex gap-2" onSubmit={handleSubmit}>
           <div className="form-control" onClick={handleClick}>
