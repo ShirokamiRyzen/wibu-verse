@@ -54,13 +54,12 @@ export default function Home() {
     };
   }, []);
 
-
   const showPopup = () => {
     // Create overlay
     const overlay = document.createElement('div');
     overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
 
-    //Quotes popup, ubah lewat .env
+    // Quotes popup, ubah lewat .env
     const kata1 = process.env.NEXT_PUBLIC_KATA_1;
     const kata2 = process.env.NEXT_PUBLIC_KATA_2;
     const tombol = process.env.NEXT_PUBLIC_TOMBOL;
@@ -69,9 +68,13 @@ export default function Home() {
     // Create popup
     const popup = document.createElement('div');
     popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
+
+    // Set the width and height of the popup
+    popup.style.width = '380px'; // Adjust the width as needed
+
     popup.innerHTML = `
   <center>
-    <img src="${gambar}" alt="gepeng" width="240px">
+    <img src="${gambar}" alt="gepeng" width="260px">
 
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
     <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
@@ -80,7 +83,7 @@ export default function Home() {
   <center>
 `;
 
-    // Append overlay and popup to body
+    // Append the overlay and popup to the body
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
 
@@ -105,6 +108,7 @@ export default function Home() {
 
     setTimeout(() => {
       // Make popup and overlay visible
+      overlay.style.zIndex = '50';
       overlay.classList.add('opacity-100');
       popup.classList.add('opacity-100');
     }, 100);

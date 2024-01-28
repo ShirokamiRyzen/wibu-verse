@@ -45,9 +45,10 @@ const Page = () => {
 
       {lists.map((item) => (
         <CardInfo key={item.id} id={item.id} title={item.title} thumbnail={item.thumbnail} genres={item.genres} />
-      ))}
+   
+   ))}
     </div>
   );
 };
 
-export default Page;
+export default Page
