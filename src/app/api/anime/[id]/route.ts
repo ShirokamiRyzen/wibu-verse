@@ -35,7 +35,11 @@ export const GET = async (req: NextRequest, context: { params: { id: string } })
       })
       .get();
 
-    return NextResponse.json({ status: 200, succes: true, data: { title, thumbnail, info, links } }, { status: 200 });
+    const slug = id;
+
+    // Menambahkan slug ke dalam respons JSON
+    const responseData = { title, thumbnail, info, links, slug };
+    return NextResponse.json({ status: 200, succes: true, data: responseData }, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ msg: error }, { status: 500 });
   }
