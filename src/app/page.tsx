@@ -11,11 +11,12 @@ import { Analytics } from '@vercel/analytics/react';
 export default function Home() {
   const [episode, setEpisode] = useState<Episode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [category, setCategory] = useState<string>('new'); // 'new' for latest releases, 'finish' for finished anime
 
-  const getNewEpisodes = async () => {
+  const getEpisodes = async (category: string) => {
     setLoading(true);
     try {
-      const { data } = await axios.get('/api/new');
+      const { data } = await axios.get(`/api/${category}`);
       setEpisode(data.data);
     } catch (error: any) {
       console.log(error.message);
@@ -24,8 +25,13 @@ export default function Home() {
     }
   };
 
+  const handleCategoryChange = (selectedCategory: string) => {
+    setCategory(selectedCategory);
+    getEpisodes(selectedCategory);
+  };
+
   useEffect(() => {
-    getNewEpisodes();
+    getEpisodes(category);
 
     const popupShownBefore = Cookies.get('popupShown');
 
@@ -42,7 +48,6 @@ export default function Home() {
 
     const cleanupOnUnload = () => {
       if (Cookies.get('popupShown')) {
-        // Hapus cookies hanya jika masih ada
         Cookies.remove('popupShown');
       }
     };
@@ -52,7 +57,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('unload', cleanupOnUnload);
     };
-  }, []);
+  }, [category]);
 
   const showPopup = () => {
     // Create overlay
@@ -130,10 +135,23 @@ export default function Home() {
         `}
       </Script>
 
-      <h1 className="bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4">Rilisan Terbaru</h1>
-      {loading ? (
-        <Loading />
-      ) : null}
+      <div className="flex justify-between">
+        <h1
+          className={`bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4 cursor-pointer clickAnimation ${category === 'new' ? 'opacity-100' : 'opacity-70'}`}
+          onClick={() => handleCategoryChange('new')}
+        >
+          Rilisan Terbaru
+        </h1>
+        <h1
+          className={`bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4 cursor-pointer clickAnimation ${category === 'new-finish' ? 'opacity-100' : 'opacity-70'}`}
+          onClick={() => handleCategoryChange('new-finish')}
+        >
+          Anime Selesai
+        </h1>
+      </div>
+
+      {loading ? <Loading /> : null}
+
       <div className="flex justify-center flex-wrap gap-2">
         {episode.map((item) => (
           <Card key={item.id} id={item.id} title={item.title} thumbnail={item.thumbnail} episode={item.episode} />
@@ -141,4 +159,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};  

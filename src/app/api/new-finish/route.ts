@@ -7,7 +7,7 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const fetchPromises = timestamps.map(async (timestamp) => {
-      const { data, status } = await useFetch(`https://otakudesu.media/ongoing-anime/page/${timestamp}/`);
+      const { data, status } = await useFetch(`https://otakudesu.media/complete-anime/page/${timestamp}/`);
       if (status !== 200) throw new Error(`Error ${status}`);
       return data;
     });
