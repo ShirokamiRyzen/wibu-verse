@@ -140,13 +140,13 @@ export default function Home() {
           className={`bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4 cursor-pointer clickAnimation ${category === 'new' ? 'opacity-100' : 'opacity-70'}`}
           onClick={() => handleCategoryChange('new')}
         >
-          Rilisan Terbaru
+          Anime ongoing
         </h1>
         <h1
           className={`bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4 cursor-pointer clickAnimation ${category === 'new-finish' ? 'opacity-100' : 'opacity-70'}`}
           onClick={() => handleCategoryChange('new-finish')}
         >
-          Anime Selesai
+          Selesai tayang
         </h1>
       </div>
 
