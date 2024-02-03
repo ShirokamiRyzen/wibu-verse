@@ -50,6 +50,17 @@ const BookmarkPage = () => {
                           Genre: {bookmark.info.find((info: string) => info.startsWith("Genre:"))?.replace("Genre: ", "")}
                         </p>
                       )}
+                      {/* Display Total Episode and Status */}
+                      {bookmark.info && (
+                        <div className="text-white text-sm mt-2">
+                          {bookmark.info.find((info: string) => info.startsWith("Total Episode:")) && (
+                            <p>Total Episode: {bookmark.info.find((info: string) => info.startsWith("Total Episode:"))?.replace("Total Episode: ", "")}</p>
+                          )}
+                          {bookmark.info.find((info: string) => info.startsWith("Status:")) && (
+                            <p>Status: {bookmark.info.find((info: string) => info.startsWith("Status:"))?.replace("Status: ", "")}</p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </a>
