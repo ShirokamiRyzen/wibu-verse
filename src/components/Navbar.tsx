@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import React, { useRef } from 'react';
-import AndroidNotification from './AndroidNotification';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
@@ -50,7 +49,6 @@ const Navbar = () => {
           </button>
         </form>
       </div>
-      <AndroidNotification />
     </div>
   );
 };
