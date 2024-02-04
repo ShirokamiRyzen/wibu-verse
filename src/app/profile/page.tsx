@@ -45,6 +45,7 @@ const ProfilePage: React.FC = () => {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya, Hapus!',
+      cancelButtonText: 'Batal',
     }).then((result) => {
       if (result.isConfirmed) {
         // Deleting cookies
@@ -60,13 +61,63 @@ const ProfilePage: React.FC = () => {
     });
   };
 
-  // JSX for the component
+  // Function to handle exporting bookmarks
+  const handleExportBookmark = () => {
+    // Retrieve your bookmark data, e.g., from localStorage
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+
+    // Check if there are bookmarks to export
+    if (bookmarks.length > 0) {
+      // Create a Blob containing the JSON data
+      const blob = new Blob([JSON.stringify(bookmarks)], { type: 'application/json' });
+
+      // Create a download link and trigger a click to start the download
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bookmarks.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } else {
+      // Display a message if there are no bookmarks to export
+      Swal.fire('Tidak Ada Bookmark', 'Tidak ada bookmark untuk diekspor.', 'info');
+    }
+  };
+
+  // Function to handle importing bookmarks
+  const handleImportBookmark = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInput = event.target;
+    const file = fileInput.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        try {
+          const importedBookmarks = JSON.parse(e.target?.result as string);
+
+          // Update your bookmarks data in localStorage or perform necessary actions
+          localStorage.setItem('bookmarks', JSON.stringify(importedBookmarks));
+
+          Swal.fire('Import Berhasil', 'Bookmark berhasil diimpor.', 'success');
+        } catch (error) {
+          console.error('Error parsing imported bookmarks:', error);
+          Swal.fire('Import Gagal', 'Terjadi kesalahan saat mengimpor bookmark.', 'error');
+        }
+      };
+
+      reader.readAsText(file);
+    }
+  };
+
   return (
     <div className="container mx-auto my-8 p-8">
       <h1 className="text-3xl font-bold mb-4">Profil Pengguna</h1>
 
       <p className="mb-4">IP Pengguna: {userIp}</p>
-      
+
       {userDeviceInfo && (
         <div>
           <h2 className="text-xl font-bold mb-2">Informasi Perangkat</h2>
@@ -76,12 +127,26 @@ const ProfilePage: React.FC = () => {
         </div>
       )}
 
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
-        onClick={handleDeleteData}
-      >
-        Hapus Bookmark
-      </button>
+      <div className="flex space-x-4">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
+          onClick={handleDeleteData}
+        >
+          Hapus Bookmark
+        </button>
+
+        <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-4 rounded"
+          onClick={handleExportBookmark}
+        >
+          Export Bookmark
+        </button>
+
+        <label className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 mt-4 rounded">
+          <center>Import Bookmark</center>
+          <input type="file" accept=".json" onChange={handleImportBookmark} className="hidden" />
+        </label>
+      </div>
     </div>
   );
 };
