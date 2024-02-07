@@ -5,7 +5,6 @@ import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
 import { Episode } from '@/types/episode';
 import Loading from '@/components/Loading';
-import Cookies from 'js-cookie';
 import { Analytics } from '@vercel/analytics/react';
 import Swal from 'sweetalert2';
 
@@ -33,27 +32,30 @@ export default function Home() {
 
   useEffect(() => {
     getEpisodes(category);
-  
-    const popupShownBefore = Cookies.get('popupShown');
-  
-    // Tampilkan popup jika belum pernah ditampilkan sebelumnya
+
+    // Periksa apakah popup sudah ditampilkan sebelumnya dalam sesi ini
+    const popupShownBefore = sessionStorage.getItem('popupShown');
+
+    // Tampilkan popup jika belum pernah ditampilkan dalam sesi ini
     if (!popupShownBefore) {
       showPopup();
-      Cookies.set('popupShown', 'true', { expires: 1 });
+      // Set status popupShown ke 'true' dalam session storage
+      sessionStorage.setItem('popupShown', 'true');
     }
-  
+
     const cleanupOnUnload = () => {
-      if (Cookies.get('popupShown')) {
-        Cookies.remove('popupShown');
+      // Kosongkan status popupShown saat pengguna meninggalkan halaman
+      if (sessionStorage.getItem('popupShown')) {
+        sessionStorage.removeItem('popupShown');
       }
     };
-  
+
     window.addEventListener('unload', cleanupOnUnload);
-  
+
     return () => {
       window.removeEventListener('unload', cleanupOnUnload);
     };
-    
+
   }, [category]);
 
   const showPopup = () => {
@@ -85,14 +87,14 @@ export default function Home() {
         confirmButton: 'bg-blue-500 text-white px-2 py-1 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none',
         cancelButton: 'bg-red-500 text-white px-2 py-1 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none'
       }
-    //}).then((result) => {
-    //  if (result.isConfirmed) {
-    //    Swal.fire(
-    //      'Halo kak!',
-    //      'Jangan lupa bernafas :D',
-    //      'success'
-    //    );
-    //  }
+      //}).then((result) => {
+      //  if (result.isConfirmed) {
+      //    Swal.fire(
+      //      'Halo kak!',
+      //      'Jangan lupa bernafas :D',
+      //      'success'
+      //    );
+      //  }
     });
   };
 
