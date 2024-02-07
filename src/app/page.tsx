@@ -7,11 +7,12 @@ import { Episode } from '@/types/episode';
 import Loading from '@/components/Loading';
 import Cookies from 'js-cookie';
 import { Analytics } from '@vercel/analytics/react';
+import Swal from 'sweetalert2';
 
 export default function Home() {
   const [episode, setEpisode] = useState<Episode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [category, setCategory] = useState<string>('new'); // 'new' for latest releases, 'finish' for finished anime
+  const [category, setCategory] = useState<string>('new');
 
   const getEpisodes = async (category: string) => {
     setLoading(true);
@@ -60,63 +61,42 @@ export default function Home() {
   }, [category]);
 
   const showPopup = () => {
-    // Create overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40';
-
     // Quotes popup, ubah lewat .env
     const kata1 = process.env.NEXT_PUBLIC_KATA_1;
     const kata2 = process.env.NEXT_PUBLIC_KATA_2;
     const tombol = process.env.NEXT_PUBLIC_TOMBOL;
     const gambar = process.env.NEXT_PUBLIC_GAMBAR;
 
-    // Create popup
-    const popup = document.createElement('div');
-    popup.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 shadow-md rounded-md opacity-0 transition-opacity duration-300 z-50';
-
-    // Set the width and height of the popup
-    popup.style.width = '380px'; // Adjust the width as needed
-
-    popup.innerHTML = `
-  <center>
-    <img src="${gambar}" alt="gepeng" width="260px">
-
-    <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
-    <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
-
-    <button class="bg-blue-500 text-white px-2 py-1 mt-2 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none">${tombol}</button>
-  <center>
-`;
-
-    // Append the overlay and popup to the body
-    document.body.appendChild(overlay);
-    document.body.appendChild(popup);
-
-    // Disable scrolling
-    document.body.style.overflow = 'hidden';
-
-    const closeButton = popup.querySelector('button');
-
-    if (closeButton) {
-      closeButton.addEventListener('click', () => {
-        // Enable scrolling
-        document.body.style.overflow = 'visible';
-
-        // Remove both overlay and popup
-        document.body.removeChild(overlay);
-        popup.classList.remove('opacity-100');
-        setTimeout(() => {
-          document.body.removeChild(popup);
-        }, 300);
-      });
-    }
-
-    setTimeout(() => {
-      // Make popup and overlay visible
-      overlay.style.zIndex = '50';
-      overlay.classList.add('opacity-100');
-      popup.classList.add('opacity-100');
-    }, 100);
+    // Create SweetAlert popup
+    Swal.fire({
+      //title: 'Halo kak!',
+      html: `
+        <center>
+          <img src="${gambar}" alt="gepeng" width="260px">
+          <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
+          <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
+        </center>`,
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: tombol,
+      background: '#2D2D2D', // Warna latar belakang gelap
+      customClass: {
+        title: 'text-white',
+        htmlContainer: 'text-white',
+        popup: 'bg-gray-800', // Warna pop-up gelap
+        confirmButton: 'bg-blue-500 text-white px-2 py-1 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none',
+        cancelButton: 'bg-red-500 text-white px-2 py-1 rounded-md md:px-4 md:py-2 md:text-lg focus:outline-none'
+      }
+    //}).then((result) => {
+    //  if (result.isConfirmed) {
+    //    Swal.fire(
+    //      'Halo kak!',
+    //      'Jangan lupa bernafas :D',
+    //      'success'
+    //    );
+    //  }
+    });
   };
 
   return (
