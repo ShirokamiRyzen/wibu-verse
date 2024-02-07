@@ -33,31 +33,27 @@ export default function Home() {
 
   useEffect(() => {
     getEpisodes(category);
-
+  
     const popupShownBefore = Cookies.get('popupShown');
-
+  
+    // Tampilkan popup jika belum pernah ditampilkan sebelumnya
     if (!popupShownBefore) {
       showPopup();
       Cookies.set('popupShown', 'true', { expires: 1 });
     }
-
-    const userAgent = window.navigator.userAgent;
-
-    if (userAgent.includes("Desktop")) {
-      alert("Lorem Ipsum");
-    }
-
+  
     const cleanupOnUnload = () => {
       if (Cookies.get('popupShown')) {
         Cookies.remove('popupShown');
       }
     };
-
+  
     window.addEventListener('unload', cleanupOnUnload);
-
+  
     return () => {
       window.removeEventListener('unload', cleanupOnUnload);
     };
+    
   }, [category]);
 
   const showPopup = () => {
@@ -70,6 +66,7 @@ export default function Home() {
     // Create SweetAlert popup
     Swal.fire({
       //title: 'Halo kak!',
+      icon: 'warning',
       html: `
         <center>
           <img src="${gambar}" alt="gepeng" width="260px">
