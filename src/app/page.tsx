@@ -68,7 +68,7 @@ export default function Home() {
     // Create SweetAlert popup
     Swal.fire({
       //title: 'Halo kak!',
-      icon: 'warning',
+      //icon: 'warning',
       html: `
         <center>
           <img src="${gambar}" alt="gepeng" width="260px">
