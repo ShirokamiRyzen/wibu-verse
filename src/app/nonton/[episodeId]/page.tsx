@@ -19,6 +19,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
   const [showMessage, setShowMessage] = useState<boolean>(true);
   const [showComments, setShowComments] = useState<boolean>(false);
   const { setLists } = useContext(ListEpisodeContext);
+  const shortname = process.env.NEXT_PUBLIC_SHORTNAME
 
   const getEpisode = async () => {
     setLoading(true);
@@ -179,11 +180,11 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
           {showComments && (
             <div className="mt-5">
               <DiscussionEmbed
-                shortname="ryzendesu" // replace this with your Disqus shortname
+                shortname={`${shortname}`}
                 config={{
                   url: window.location.href,
-                  identifier: params.episodeId, // identifier could be episode id or any unique identifier for your page
-                  title: episode.title, // title of the current page
+                  identifier: params.episodeId,
+                  title: episode.title,
                 }}
               />
             </div>
