@@ -180,8 +180,10 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
 
           {/* Toggle comments button */}
           <div className="mt-3 text-center">
-            <button onClick={toggleComments} className="buka-komentar-button">
-              {showComments ? 'Tutup Komentar' : 'Buka Komentar'}
+            <br />
+            <br />
+            <button onClick={toggleComments} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded clickAnimation">
+              {showComments ? 'Tutup Komentar & React' : 'Buka Komentar & React'}
             </button>
           </div>
 

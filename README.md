@@ -20,8 +20,10 @@ Set Environment Variables on vercel setting
 //use example on this repository
 //change value
 
-NEXT_PUBLIC_KATA_1=Lorem ipsum dolor sit amet
-NEXT_PUBLIC_KATA_2=consectetur adipisicing elit.
+NEXT_PUBLIC_SHORTNAME="YOUR_DISQUS_SHORTNAME"
+NEXT_PUBLIC_GAMBAR="image_link"
+NEXT_PUBLIC_KATA_1="Lorem ipsum dolor sit amet"
+NEXT_PUBLIC_KATA_2="consectetur adipisicing elit."
 NEXT_PUBLIC_TOMBOL=Tutup
 ```
 
