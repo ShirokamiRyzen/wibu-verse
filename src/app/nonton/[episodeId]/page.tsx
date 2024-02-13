@@ -6,7 +6,7 @@ import axios from 'axios';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
 import Loading from '@/components/Loading';
 import { DiscussionEmbed } from 'disqus-react';
-import Modal from '@/components/Modal';
+import Modal from '@/components/DisqusModal';
 
 interface Episode {
   title: string;
@@ -19,7 +19,7 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
   const [selectedQuality, setSelectedQuality] = useState<string>('480p');
   const [showMessage, setShowMessage] = useState<boolean>(true);
   const [showComments, setShowComments] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Tambahkan state untuk modal
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { setLists } = useContext(ListEpisodeContext);
   const shortname = process.env.NEXT_PUBLIC_SHORTNAME;
 

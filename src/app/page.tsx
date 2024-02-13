@@ -62,6 +62,7 @@ export default function Home() {
     // Quotes popup, ubah lewat .env
     const kata1 = process.env.NEXT_PUBLIC_KATA_1;
     const kata2 = process.env.NEXT_PUBLIC_KATA_2;
+    const kata3 = process.env.NEXT_PUBLIC_KATA_3;
     const tombol = process.env.NEXT_PUBLIC_TOMBOL;
     const gambar = process.env.NEXT_PUBLIC_GAMBAR;
 
@@ -74,6 +75,7 @@ export default function Home() {
           <img src="${gambar}" alt="gepeng" width="260px">
           <p class="text-sm md:text-lg text-gray-500 font-bold">${kata1}</p>
           <p class="text-sm md:text-lg text-gray-500 font-bold">${kata2}</p>
+          <p class="text-sm md:text-lg text-gray-500 font-bold">${kata3}</p>
         </center>`,
       showCancelButton: false,
       confirmButtonColor: '#3085d6',
