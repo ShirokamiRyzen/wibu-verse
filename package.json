@@ -11,8 +11,8 @@
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
     "@types/node": "20.5.1",
-    "@types/react": "18.2.20",
-    "@types/react-dom": "18.2.7",
+    "@types/react": "18.2.55",
+    "@types/react-dom": "18.2.19",
     "@vercel/analytics": "^1.1.1",
     "autoprefixer": "10.4.17",
     "axios": "^1.4.0",
