@@ -7,7 +7,7 @@ export const GET = async (req: NextRequest) => {
   try {
     const requests = pages.map(async (page) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { data, status } = await useFetch(`https://otakudesu.media/ongoing-anime/page/${page}`);
+      const { data, status } = await useFetch(`https://otakudesu.cloud/ongoing-anime/page/${page}`);
 
       if (status !== 200) throw new Error(`Error ${status}`);
 

@@ -6,7 +6,7 @@ export const GET = async (req: NextRequest, context: { params: { id: string } })
   const { id } = context.params;
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, status } = await useFetch(`https://otakudesu.media/episode/${id}`);
+    const { data, status } = await useFetch(`https://otakudesu.cloud/episode/${id}`);
 
     if (status !== 200) throw new Error(`Error ${status}`);
 
